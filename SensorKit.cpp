@@ -10,8 +10,16 @@
 SensorKit::SensorKit(byte a_pin, byte d_pin)
 :  _pin_A(a_pin)
 ,  _pin_D(d_pin)
+// , init(1)
 {
 }
+
+// SensorKit::SensorKit(int a_pin)
+// :  _pin_A(a_pin)
+// ,  _pin_D(UNPINNED)
+// // , init(2)
+// {
+// }
 
 // inline 
 void SensorKit::begin()
@@ -19,9 +27,12 @@ void SensorKit::begin()
 	pinMode(_pin_A, INPUT);
 	pinMode(_pin_D, INPUT);
 	Serial.print( "Sensor: ");
+	// Serial.println( init );	
+	// Serial.print( ", " );
 	Serial.print( _pin_A );
 	Serial.print( ", " );
 	Serial.println( _pin_D );
+
 }
 
 // 
@@ -32,7 +43,7 @@ void SensorKit::begin()
 
 int SensorKit::read()
 {
-	return (_pin_A>=0)?analogRead(_pin_A):-1;
+	return (_pin_A>=0)?analogRead(_pin_A):NODATA;
 }
 
 

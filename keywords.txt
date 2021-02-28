@@ -18,3 +18,5 @@ status       KEYWORD2
 #######################################
 # Constants (LITERAL1)
 #######################################
+UNPINNED	LITERAL1
+NODATA		LITERAL1
