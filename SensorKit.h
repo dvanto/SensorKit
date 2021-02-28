@@ -6,27 +6,30 @@
 #define SensorKit_h
 #include "Arduino.h"
 
+// включить инлайн реализацию 
 // #define INLINE_SENSORKIT
+
+// простой вариант  - без проверок
 // #define TINY_SENSORKIT
 
 class SensorKit
 {
 	public:
-		SensorKit(uint8_t a_pin, uint8_t d_pin);
+		SensorKit(byte a_pin, byte d_pin);
 		void begin();
 		#ifdef INLINE_SENSORKIT
 		inline int read() {
 			#ifdef TINY_SENSORKIT
 				return analogRead(_pin_A);
 			#else
-				return _pin_A?analogRead(_pin_A):-1;
+				return (_pin_A>0)?analogRead(_pin_A):-1;
 			#endif
 			};
 		inline bool status() {
 			#ifdef TINY_SENSORKIT
 				return digitalRead(_pin_D);
 			#else
-				return _pin_D?digitalRead(_pin_D):LOW;
+				return (_pin_D>0)?digitalRead(_pin_D):LOW;
 			#endif
 			};
 		#else
@@ -38,8 +41,8 @@ class SensorKit
 		// const static bool RELEASED = HIGH;
 	
 	private:
-		uint8_t  _pin_A;
-		uint8_t  _pin_D;
+		byte  _pin_A; // отрицательные значение - порт не исползуется
+		byte  _pin_D; // отрицательные значение - порт не исползуется
 };
 
 #endif

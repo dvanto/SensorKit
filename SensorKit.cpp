@@ -7,7 +7,7 @@
 #include "SensorKit.h"
 #include <Arduino.h>
 
-SensorKit::SensorKit(uint8_t a_pin, uint8_t d_pin)
+SensorKit::SensorKit(byte a_pin, byte d_pin)
 :  _pin_A(a_pin)
 ,  _pin_D(d_pin)
 {
@@ -32,13 +32,13 @@ void SensorKit::begin()
 
 int SensorKit::read()
 {
-	return _pin_A?analogRead(_pin_A):-1;
+	return (_pin_A>=0)?analogRead(_pin_A):-1;
 }
 
 
 bool SensorKit::status()
 {
-	return _pin_D?digitalRead(_pin_D):LOW;
+	return (_pin_D>=0)?digitalRead(_pin_D):LOW;
 }
 
 #endif
