@@ -4,7 +4,9 @@
 
 #ifndef SensorKit_h
 #define SensorKit_h
-#include "Arduino.h"
+#include <Arduino.h>
+
+//#define DISABLE_DEBUG
 
 // включить инлайн реализацию 
 // #define INLINE_SENSORKIT
@@ -19,7 +21,7 @@ class SensorKit
 {
 	public:
 		SensorKit(byte a_pin, byte d_pin = UNPINNED);
-		// SensorKit(int a_pin);
+
 		void begin();
 		#ifdef INLINE_SENSORKIT
 		inline int read() {
